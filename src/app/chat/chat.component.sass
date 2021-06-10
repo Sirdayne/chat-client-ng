@@ -1,0 +1,24 @@
+$MAX-WIDTH-CHAT: 1200px
+
+.chat
+
+  @apply flex flex-col w-full justify-center items-center
+
+  &-container
+    height: 200px
+    max-width: $MAX-WIDTH-CHAT
+    border: 1px solid #fff
+    @apply flex flex-col-reverse p-2 mt-15 w-full overflow-x-auto box-border
+
+  &-row
+    @apply text-white
+
+  &-author
+   @apply text-pink
+
+  &-message
+    @apply text-white
+
+  &-controls
+    max-width: $MAX-WIDTH-CHAT
+    @apply mt-2 w-full

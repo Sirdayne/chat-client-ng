@@ -1,1 +1,39 @@
-<p>chat works!</p>
+<div class="chat">
+  <div class="chat-container">
+    <div class="chat-row">
+      <span class="chat-author">Yernar Mussin</span>:
+      <span class="chat-message">Hello there!</span>
+    </div>
+
+    <div class="chat-row">
+      <span class="chat-author">Yernar Mussin</span>:
+      <span class="chat-message">Hi there!</span>
+    </div>
+
+    <div class="chat-row">
+      <span class="chat-author">Yernar Mussin</span>:
+      <span class="chat-message">Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem </span>
+    </div>
+
+  </div>
+
+  <div class="chat-controls">
+    <div class="flex">
+      <mat-form-field class="flex-1 text-white">
+        <input matInput [formControl]="messageControl" autocomplete="off">
+      </mat-form-field>
+      <div class="mt-1 ml-1">
+        <button color="primary"
+                mat-raised-button
+                (click)="sendMessage()"
+                [disabled]="messageControl.invalid"
+                type="submit">
+          SEND
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
