@@ -1,26 +1,18 @@
 <div class="chat">
   <div class="chat-container">
-    <div class="chat-row">
-      <span class="chat-author">Yernar Mussin</span>:
-      <span class="chat-message">Hello there!</span>
+    <div *ngFor="let message of messages" class="chat-row">
+      <span class="chat-author" [style.color]="message.color">{{ message.email }}</span>:
+      <span class="chat-message">{{ message.event === 'connection' ? 'Entered chat!' : message.message }}</span>
     </div>
-
-    <div class="chat-row">
-      <span class="chat-author">Yernar Mussin</span>:
-      <span class="chat-message">Hi there!</span>
-    </div>
-
-    <div class="chat-row">
-      <span class="chat-author">Yernar Mussin</span>:
-      <span class="chat-message">Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem Hello there! Lorem </span>
-    </div>
-
   </div>
 
   <div class="chat-controls">
     <div class="flex">
       <mat-form-field class="flex-1 text-white">
-        <input matInput [formControl]="messageControl" autocomplete="off">
+        <input matInput
+               [formControl]="messageControl"
+               (keydown.enter)="sendMessage()"
+               autocomplete="off">
       </mat-form-field>
       <div class="mt-1 ml-1">
         <button color="primary"

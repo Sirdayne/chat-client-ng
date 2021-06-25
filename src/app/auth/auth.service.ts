@@ -9,10 +9,19 @@ export interface IAuthResponse {
   token: string;
 }
 
+export interface IUser {
+  id: number;
+  email: string;
+  role: string;
+  color: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  user: IUser;
 
   constructor(private httpService: HttpClient) { }
 
@@ -22,5 +31,13 @@ export class AuthService {
 
   register(body) {
     return this.httpService.post<IAuthResponse>('/register', body)
+  }
+
+  getCurrentUser() {
+    return this.httpService.get<IUser>('/current-user');
+  }
+
+  setUser(user: IUser) {
+    this.user = user;
   }
 }

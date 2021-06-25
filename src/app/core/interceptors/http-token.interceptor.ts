@@ -7,11 +7,12 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { JwtService } from '../../auth/jwt.service';
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private jwtService: JwtService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
@@ -21,8 +22,14 @@ export class HttpTokenInterceptor implements HttpInterceptor {
       return next.handle(request);
     }
 
+    const setHeaders = {};
+    if (this.jwtService.isLoggedIn()) {
+      setHeaders['Authorization'] = `Bearer ${this.jwtService.getToken()}`;
+    }
+
     const req = request.clone({
       url: this.getModifiedUrl(request.url),
+      setHeaders
     });
 
     return next.handle(req);

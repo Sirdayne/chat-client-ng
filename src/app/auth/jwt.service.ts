@@ -12,7 +12,7 @@ export class JwtService {
   }
 
   getToken() {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token');
     return token
   }
 
